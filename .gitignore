@@ -43,3 +43,4 @@ next-env.d.ts
 
 delete.txt
 /src/generated/prisma
+architecture.txt
