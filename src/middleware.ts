@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { withAuth } from "next-auth/middleware"
 
 export default withAuth(
-  function middleware(req) {
-    // Add any additional middleware logic here
-  },
+  // Remove the unused middleware function entirely
   {
     callbacks: {
       authorized: ({ token, req }) => {

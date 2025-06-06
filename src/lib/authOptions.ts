@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { NextAuthOptions, RequestInternal } from 'next-auth'
+import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { verifyUser } from './auth'
 
@@ -13,8 +12,7 @@ export const authOptions: NextAuthOptions = {
       },
 
       async authorize(
-        credentials: Record<'username' | 'password', string> | undefined,
-        req: Pick<RequestInternal, 'method' | 'body' | 'query' | 'headers'>
+        credentials: Record<'username' | 'password', string> | undefined
       ) {
         if (!credentials?.username || !credentials?.password) {
           return null
@@ -57,7 +55,9 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (token && session.user) {
         session.user.id = token.id as string
-        session.user.username = token.username as string
+        if (token.username) {
+          session.user.username = token.username as string
+        }
       }
       return session
     },

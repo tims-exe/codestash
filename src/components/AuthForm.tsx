@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import { useState, ChangeEvent, FormEvent } from 'react'
@@ -66,7 +65,7 @@ export default function AuthForm({ type }: AuthFormProps) {
         }
       }
     } catch (error) {
-      setError('Something went wrong. Please try again.')
+      setError(`Something went wrong. Please try again. Error : ${error}`)
     } finally {
       setLoading(false)
     }
