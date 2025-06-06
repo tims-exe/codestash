@@ -1,36 +1,46 @@
-import { redirect } from 'next/navigation'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '../api/auth/[...nextauth]/route'
-import Layout from '../../components/Layout'
-import AuthForm from '../../components/AuthForm'
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+// import Layout from "../../components/Layout";
+import AuthForm from "../../components/AuthForm";
+import Link from "next/link";
 
 interface LoginPageProps {
-  searchParams: { message?: string }
+  searchParams: Promise<{ message?: string }>;
 }
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
-  const session = await getServerSession(authOptions)
-  
+  const session = await getServerSession(authOptions);
   if (session) {
-    redirect('/home')
+    redirect("/home");
   }
 
+  const { message } = await searchParams;
+
   return (
-    <Layout>
-      {searchParams.message && (
-        <div className="max-w-md mx-auto mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
-          {searchParams.message}
+    <div className="min-h-screen flex flex-col justify-between p-10">
+      <Link href="/" className="self-start text-2xl">&lt;/&gt;</Link>
+      <div className="flex flex-col justify-center items-center">
+      {message && (
+        <div className="max-w-md mx-auto mb-4 p-3 border border-green-300 text-green-300 rounded">
+          {message}
         </div>
       )}
+
       <AuthForm type="login" />
+
       <div className="text-center mt-4">
         <p className="text-gray-600">
-          Don&apos;t have an account?{' '}
-          <a href="/signup" className="text-blue-600 hover:text-blue-800">
-            Sign up here
+          Don&apos;t have an account?{" "}
+          <a href="/signup" className="text-gray-400 hover:text-green-800">
+            Sign up
           </a>
         </p>
       </div>
-    </Layout>
-  )
+    </div>
+    <div>
+
+    </div>
+    </div>
+  );
 }

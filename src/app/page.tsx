@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import Image from 'next/image'
 
 export default function HomePage() {
@@ -10,16 +10,27 @@ export default function HomePage() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
-  const handleEnterClick = () => {
-    setLoading(true)
+  const handleEnterClick = useCallback(() => {
     if (status === 'loading') return
+    setLoading(true)
 
     if (session) {
       router.push('/home')
     } else {
       router.push('/login')
     }
-  }
+  }, [status, session, router])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        handleEnterClick()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [handleEnterClick])
 
   return (
     <div className='flex min-h-screen flex-col justify-between items-center p-10'>
@@ -33,10 +44,10 @@ export default function HomePage() {
         </p>
         <button 
           onClick={handleEnterClick}
-          className='bg-white flex px-7 py-2 justify-center items-center gap-3 rounded-xl w-min self-center mt-10'
+          className='bg-white flex px-7 py-2 justify-center items-center gap-3 rounded-xl w-min self-center mt-10 cursor-pointer'
           disabled={loading}
         >
-          <p className='text-black '>
+          <p className='text-black'>
             {loading ? 'Loading...' : 'Enter'}
           </p>
           <Image 

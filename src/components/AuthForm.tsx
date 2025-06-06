@@ -73,55 +73,58 @@ export default function AuthForm({ type }: AuthFormProps) {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+    <div className="w-[calc(100%-40px)] max-w-[350px] mx-auto mt-8 p-6 bg-neutral-900 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-center">
         {type === 'signup' ? 'Sign Up' : 'Login'}
       </h2>
       
       {error && (
-        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+        <div className="mb-4 p-3 border border-red-500 text-red-400 rounded">
           {error}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="username" className="block text-sm text-neutral-400">
             Username
           </label>
-          <input
+            <input
             type="text"
             id="username"
             name="username"
+            autoComplete="off"
             value={formData.username}
             onChange={handleChange}
             required
             minLength={3}
             maxLength={50}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-neutral-900 text-white placeholder-gray-400 focus:outline-none focus:ring-neutral-500 focus:border-neutral-500"
+            />
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="password" className="block text-sm text-neutral-400">
             Password
           </label>
-          <input
+            <input
             type="password"
             id="password"
             name="password"
+            autoComplete="off"
             value={formData.password}
             onChange={handleChange}
             required
             minLength={6}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-neutral-900 text-white placeholder-gray-400 focus:outline-none focus:ring-neutral-500 focus:border-neutral-500"
+            />
+
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 transition-colors"
+          className="w-full bg-white text-black py-2 px-4 rounded-md hover:bg-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2 disabled:opacity-50 transition-colors"
         >
           {loading ? 'Loading...' : (type === 'signup' ? 'Sign Up' : 'Login')}
         </button>
