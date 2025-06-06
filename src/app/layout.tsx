@@ -16,7 +16,7 @@ import './globals.css'
 // const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'My Auth App',
+  title: 'codestash_',
   description: 'Next.js App with Authentication',
 }
 
