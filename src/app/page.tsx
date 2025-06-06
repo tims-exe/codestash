@@ -1,27 +1,53 @@
 'use client'
 
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import Image from 'next/image'
 
 export default function HomePage() {
+  const { data: session, status } = useSession()
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
+
+  const handleEnterClick = () => {
+    setLoading(true)
+    if (status === 'loading') return
+
+    if (session) {
+      router.push('/home')
+    } else {
+      router.push('/login')
+    }
+  }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-black">
-      <h1 className="text-4xl mb-8">CodeStash_</h1>
-      <div className="flex space-x-4">
-        <button
-          onClick={() => router.push('/login')}
-          className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+    <div className='flex min-h-screen flex-col justify-between items-center p-10'>
+      <div className='self-start text-2xl'>&lt;/&gt;</div>
+      <div className='flex flex-col justify-start'>
+        <p className='text-[50px] pb-4'>
+          codestash_
+        </p>
+        <p className='max-w-[500px]'>
+          Organize and store your coding problems in a structured, searchable, and trackable way.
+        </p>
+        <button 
+          onClick={handleEnterClick}
+          className='bg-white flex px-7 py-2 justify-center items-center gap-3 rounded-xl w-min self-center mt-10'
+          disabled={loading}
         >
-          Login
-        </button>
-        <button
-          onClick={() => router.push('/signup')}
-          className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
-        >
-          Signup
+          <p className='text-black '>
+            {loading ? 'Loading...' : 'Enter'}
+          </p>
+          <Image 
+            src="/images/enter_arrow.png"
+            alt="enter_arrow"
+            width={18}
+            height={6.22}
+          />
         </button>
       </div>
+      <div className=''></div>
     </div>
   )
 }

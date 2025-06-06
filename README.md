@@ -8,7 +8,8 @@ Done
 - basic login signup routing
 
 ToDo
-- design home login signup (responsive)
+- design home login signup
 - implement authentication
+- make design responsive
 - deploy and test
 - design master db

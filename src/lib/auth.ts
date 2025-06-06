@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import bcrypt from "bcryptjs";
 import { AuthResult, User } from "../types/auth";
 import { prisma } from "./prisma";
@@ -23,13 +22,21 @@ export async function createUser(
       },
     });
 
-    return { success: true, user: user as User };
+    const userForReturn: User = {
+      id: user.id,
+      username: user.username,
+      created_at: user.created_at.toISOString(),
+      updated_at: user.updated_at.toISOString(),
+    };
+
+    return { success: true, user: userForReturn };
   } catch (error: unknown) {
+    // Handle unique‐constraint error (Prisma error code P2002)
     if (
       typeof error === "object" &&
       error !== null &&
       "code" in error &&
-      error.code === "P2002"
+      (error as { code?: unknown }).code === "P2002"
     ) {
       return { success: false, error: "Username already exists" };
     }
@@ -56,13 +63,18 @@ export async function verifyUser(
     }
 
     const isValid = await bcrypt.compare(password, user.password_hash);
-
     if (!isValid) {
       return { success: false, error: "Invalid Password" };
     }
 
-    const { password_hash, ...userWithoutPassword } = user;
-    return { success: true, user: userWithoutPassword as User };
+    const userForReturn: User = {
+      id: user.id,
+      username: user.username,
+      created_at: user.created_at.toISOString(),
+      updated_at: user.updated_at.toISOString(),
+    };
+
+    return { success: true, user: userForReturn };
   } catch (error: unknown) {
     return {
       success: false,
