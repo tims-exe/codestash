@@ -20,7 +20,7 @@ export default async function Home() {
       </nav>
       
       <main className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-2xl text-center">
+        <div className="w-full max-w-xs text-center">
           <div className="bg-neutral-900 p-6 sm:p-8 rounded-lg shadow-md">
             <h2 className="text-xl sm:text-2xl font-semibold text-white">
               Hello, {session.user?.name}!
