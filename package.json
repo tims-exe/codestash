@@ -10,7 +10,9 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
     "@prisma/client": "^6.9.0",
+    "@types/jsdom": "^21.1.7",
     "bcryptjs": "^2.4.3",
     "next": "^15.3.3",
     "next-auth": "^4.24.11",
@@ -27,6 +29,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
+    "monaco-editor": "^0.52.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
