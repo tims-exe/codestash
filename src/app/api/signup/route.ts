@@ -40,8 +40,9 @@ export async function POST(request: NextRequest) {
       )
     }
   } catch (error) {
+    console.error('Signup error:', error)
     return NextResponse.json(
-      { message: `Internal server error : ${error}` },
+      { message: 'Internal server error' },
       { status: 500 }
     )
   }

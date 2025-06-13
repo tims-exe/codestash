@@ -1,4 +1,4 @@
-import bcrypt from "bcryptjs";
+import * as bcrypt from "bcryptjs";
 import { AuthResult, User } from "../types/auth";
 import { prisma } from "./prisma";
 
@@ -31,7 +31,7 @@ export async function createUser(
 
     return { success: true, user: userForReturn };
   } catch (error: unknown) {
-    // Handle unique‐constraint error (Prisma error code P2002)
+    // Handle unique constraint error (Prisma error code P2002)
     if (
       typeof error === "object" &&
       error !== null &&
@@ -41,6 +41,7 @@ export async function createUser(
       return { success: false, error: "Username already exists" };
     }
 
+    console.error('Create user error:', error);
     return {
       success: false,
       error:
@@ -76,6 +77,7 @@ export async function verifyUser(
 
     return { success: true, user: userForReturn };
   } catch (error: unknown) {
+    console.error('Verify user error:', error);
     return {
       success: false,
       error:

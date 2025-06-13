@@ -65,7 +65,8 @@ export default function AuthForm({ type }: AuthFormProps) {
         }
       }
     } catch (error) {
-      setError(`Something went wrong. Please try again. Error : ${error}`)
+      console.error('Auth error:', error)
+      setError('Something went wrong. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -88,7 +89,7 @@ export default function AuthForm({ type }: AuthFormProps) {
           <label htmlFor="username" className="block text-sm text-neutral-400">
             Username
           </label>
-            <input
+          <input
             type="text"
             id="username"
             name="username"
@@ -99,14 +100,14 @@ export default function AuthForm({ type }: AuthFormProps) {
             minLength={3}
             maxLength={50}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-neutral-900 text-white placeholder-gray-400 focus:outline-none focus:ring-neutral-500 focus:border-neutral-500"
-            />
+          />
         </div>
 
         <div>
           <label htmlFor="password" className="block text-sm text-neutral-400">
             Password
           </label>
-            <input
+          <input
             type="password"
             id="password"
             name="password"
@@ -116,8 +117,7 @@ export default function AuthForm({ type }: AuthFormProps) {
             required
             minLength={6}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-neutral-900 text-white placeholder-gray-400 focus:outline-none focus:ring-neutral-500 focus:border-neutral-500"
-            />
-
+          />
         </div>
 
         <button

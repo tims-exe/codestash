@@ -1,7 +1,9 @@
 import { withAuth } from "next-auth/middleware"
 
 export default withAuth(
-  // Remove the unused middleware function entirely
+  function middleware() {
+    // This function can be empty since we're handling auth in callbacks
+  },
   {
     callbacks: {
       authorized: ({ token, req }) => {

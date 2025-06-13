@@ -4,7 +4,6 @@ import { authOptions } from '../../lib/authOptions'
 import AuthForm from '../../components/AuthForm'
 import Link from "next/link";
 
-
 export default async function SignupPage() {
   const session = await getServerSession(authOptions)
   
@@ -16,7 +15,7 @@ export default async function SignupPage() {
     <div className="min-h-screen flex flex-col justify-between p-10">
       <Link href="/" className="self-start text-2xl">&lt;/&gt;</Link>
       <div className="flex flex-col justify-center items-center">      
-      <AuthForm type="signup" />
+        <AuthForm type="signup" />
         <div className="text-center mt-4">
           <p className="text-gray-600">
             Already have an account?{' '}
