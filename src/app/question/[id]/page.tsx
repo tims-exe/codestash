@@ -56,7 +56,7 @@ export default async function QuestionPage({
 
   } catch (err) {
     console.error('Error fetching question:', err)
-    error = 'Failed to load question'
+    error = `Failed to load question : ${err}`
   } finally {
     await prisma.$disconnect()
   }
