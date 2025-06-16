@@ -7,13 +7,14 @@ import QuestionViewer from '@/components/QuestionViewer'
 
 const prisma = new PrismaClient()
 
-interface PageProps {
-  params: {
-    id: string
-  }
-}
-
-export default async function QuestionPage({ params }: PageProps) {
+export default async function QuestionPage({ 
+  params 
+}: {
+  params: Promise<{ id: string }>
+}) {
+  // Await the params since they're now a Promise
+  const { id } = await params
+  
   const session = await getServerSession(authOptions)
   
   if (!session || !session.user) {
@@ -32,7 +33,7 @@ export default async function QuestionPage({ params }: PageProps) {
   try {
     question = await prisma.question.findFirst({
       where: {
-        id: params.id,
+        id: id,
         user_id: userId
       },
       select: {
