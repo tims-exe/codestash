@@ -2,13 +2,9 @@
 
 A simple web application to help you efficiently track, store, and revisit your LeetCode DSA solutions.
 
----
-
 ## 🛠️ Problem Statement
 
 As a software developer preparing for exams and interviews, I found it difficult to review the data structures and algorithms (DSA) problems I had solved on LeetCode. Navigating through submission pages individually was time-consuming and unstructured. I needed a way to organize my solutions for easy review and revision.
-
----
 
 ## 🚀 Features
 
@@ -19,8 +15,6 @@ As a software developer preparing for exams and interviews, I found it difficult
 - **Authentication**: Secure user login with NextAuth.js.
 - **Responsive UI**: Built with Tailwind CSS for a clean, responsive design.
 
----
-
 ## 🧰 Tech Stack
 
 - **Framework**: Next.js
@@ -28,8 +22,6 @@ As a software developer preparing for exams and interviews, I found it difficult
 - **ORM**: Prisma
 - **Database**: Supabase (PostgreSQL)
 - **Styling**: Tailwind CSS
-
----
 
 ## 📝 Installation
 
@@ -64,16 +56,12 @@ As a software developer preparing for exams and interviews, I found it difficult
    ```
    Your app should now be running at `http://localhost:3000`.
 
----
-
 ## 🎬 Usage
 
 1. **Login/Register** using your credentials.
 2. **Add New Problem**: Enter the LeetCode problem URL, fetch details, paste your code, and assign categories.
 3. **View Dashboard**: Browse all saved problems, filter by category, difficulty, or tags.
 4. **Edit/Delete** any entry as needed.
-
----
 
 ## 🤝 Contributing
 
@@ -93,5 +81,3 @@ Contributions are welcome! Please follow these steps:
    git push origin feature/YourFeature
    ```
 5. Open a Pull Request for review.
-
-
