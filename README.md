@@ -1,4 +1,4 @@
-# LeetTrack
+# codestash_
 
 A simple web application to help you efficiently track, store, and revisit your LeetCode DSA solutions.
 
@@ -94,12 +94,4 @@ Contributions are welcome! Please follow these steps:
    ```
 5. Open a Pull Request for review.
 
----
 
-## 📄 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-*Happy coding and efficient learning!*  
