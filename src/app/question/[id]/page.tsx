@@ -1,11 +1,10 @@
+
 // src/app/question/[id]/page.tsx
 import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../../../lib/authOptions'
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '@/lib/prisma'
 import QuestionViewer from '@/components/QuestionViewer'
-
-const prisma = new PrismaClient()
 
 export default async function QuestionPage({ 
   params 
@@ -57,9 +56,8 @@ export default async function QuestionPage({
   } catch (err) {
     console.error('Error fetching question:', err)
     error = `Failed to load question : ${err}`
-  } finally {
-    await prisma.$disconnect()
   }
+  // Removed finally block - no need to disconnect with singleton
 
   if (error || !question) {
     return (

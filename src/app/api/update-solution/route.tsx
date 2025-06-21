@@ -2,9 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../../../lib/authOptions'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 export async function POST(request: NextRequest) {
   try {
@@ -75,7 +73,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ 
       message: 'Internal server error' 
     }, { status: 500 })
-  } finally {
-    await prisma.$disconnect()
   }
+  // Remove finally block - no need to disconnect with singleton
 }

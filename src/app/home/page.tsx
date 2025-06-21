@@ -4,9 +4,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '../../lib/authOptions'
 import Navbar from '@/components/Navbar'
 import Link from 'next/link'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 interface Question {
   id: string
@@ -71,9 +69,8 @@ export default async function Home() {
   } catch (err) {
     console.error('Error fetching questions:', err)
     error = 'Failed to load questions'
-  } finally {
-    await prisma.$disconnect()
   }
+  // Removed finally block - no need to disconnect with singleton
 
   const CATEGORIES = [
     'strings',
