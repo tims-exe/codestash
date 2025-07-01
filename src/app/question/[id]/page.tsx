@@ -11,7 +11,6 @@ export default async function QuestionPage({
 }: {
   params: Promise<{ id: string }>
 }) {
-  // Await the params since they're now a Promise
   const { id } = await params
   
   const session = await getServerSession(authOptions)

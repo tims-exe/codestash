@@ -169,11 +169,20 @@ export default async function Home() {
                   const isLastOdd = categoryGroups.length % 2 === 1 && index === categoryGroups.length - 1
                   
                   return (
-                    <div 
-                      key={group.category} 
-                      className={`bg-neutral-900 rounded-lg p-6 border border-neutral-700 hover:border-neutral-500 transition-all duration-200 hover:shadow-lg ${
-                        isLastOdd ? 'md:col-span-2' : ''
-                      }`}
+                    <div
+                      key={group.category}
+                      className={`
+                        bg-gradient-to-br           
+                        from-white/8             
+                        to-white/0                
+                        rounded-lg
+                        p-6
+                        border border-neutral-700
+                        hover:border-neutral-500
+                        transition-all duration-200
+                        hover:shadow-lg
+                        ${isLastOdd ? 'md:col-span-2' : ''}
+                      `}
                     >
                       {/* Category Header */}
                       <div className="flex items-center justify-between mb-4">
@@ -193,7 +202,7 @@ export default async function Home() {
                               href={`/question/${question.id}`}
                               className="hover:underline block py-1 cursor-pointer"
                             >
-                              {question.title}
+                              • {question.title}
                             </Link>
                           </div>
                         ))}
